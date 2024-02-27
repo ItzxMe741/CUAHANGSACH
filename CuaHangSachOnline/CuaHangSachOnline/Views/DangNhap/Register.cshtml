@@ -1,0 +1,60 @@
+﻿@model CuaHangSachOnline.Models.KhachHang
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+
+    <!-- ============================ COMPONENT REGISTER   ================================= -->
+    <div class="card mx-auto" style="max-width:520px; margin-top:40px;">
+        <article class="card-body">
+            <header class="mb-4"><h4 class="card-title">Sign up</h4></header>
+            <form method="post" action="Register">
+                @if (@TempData["AlertMessage"] != null)
+                {
+                    <div class="alert alert-success" style="color:red">
+                        <strong>Error ! </strong>@TempData["AlertMessage"]
+                        @*<button type="button" class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                </button>*@
+                    </div>
+                }
+                <div class="col form-group">
+                    <label>Tên Đăng Nhập</label>
+                    <input type="text" class="form-control" placeholder="" name="Username">
+                </div> <!-- form-group end.// -->
+                <div class="col form-group">
+                    <label>Mật Khẩu</label>
+                    <input type="password" class="form-control" placeholder="" name="Password">
+                </div> <!-- form-group end.// -->
+                <div class="col form-group">
+                    <label>Xác Nhận Mật Khẩu</label>
+                    <input type="password" class="form-control" placeholder="" name="ConfirmPassword">
+                </div> <!-- form-group end.// -->
+                <div class="col form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" placeholder="" name="Email">
+                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div> <!-- form-group end.// -->
+                <div class="col form-group">
+                    <label>Số Điện Thoại</label>
+                    <input type="text" class="form-control" placeholder="" name="Sdt">
+                </div> <!-- form-group end.// -->
+
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Register  </button>
+                </div> <!-- form-group// -->
+
+            </form>
+        </article><!-- card-body.// -->
+    </div> <!-- card .// -->
+    <p class="text-center mt-4">Have an account? <a href="~/DangNhap/Login">Log In</a></p>
+    <br><br>
+    <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
+
+
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->

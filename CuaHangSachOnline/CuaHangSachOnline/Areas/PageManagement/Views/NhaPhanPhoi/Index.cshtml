@@ -1,0 +1,107 @@
+﻿@model IEnumerable<CuaHangSachOnline.Models.AllNhaPPResult>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/PageManagement/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0"> Quản Lý Nhà Phân Phối</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="~/Home/Index">Home</a></li>
+                    <li class="breadcrumb-item active">Trang Quản Lý</li>
+                    <li class="breadcrumb-item active">Quản Lý Nhà Phân Phối</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" onclick="location.href='@Url.Action("Create", "NhaPhanPhoi")'" class="btn btn-success btn-sm">Thêm Mới</button>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <table class="table table-hover text-nowrap">
+                <tr>
+                    <th>
+                        Mã Nhà Phân Phối
+                    </th>
+                    <th>
+                        Tên Nhà Phân Phối
+                    </th>
+                    <th>
+                        Mã Số Thuế
+                    </th>
+                    <th>
+                       Địa Chỉ
+                    </th>
+                    <th>
+                        Sdt
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                       Ghi chú
+                    </th>
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaNhaCC)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenNhaCC)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaSoThue)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiaChi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sdt)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GhiChu)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id=item.IDNhaPP}) |
+                            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                            @Html.ActionLink("Delete", "Delete", new { id=item.IDNhaPP})
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,190 @@
+﻿@model CuaHangSachOnline.Models.Sach
+@using CuaHangSachOnline.Models
+
+@{
+    ViewBag.Title = "SuaSachThue";
+    Layout = "~/Areas/PageManagement/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Quản Lý Sách Thuê</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="Index">Home</a></li>
+                    <li class="breadcrumb-item active">Trang Quản Lý</li>
+                    <li class="breadcrumb-item active">Quản Lý Sách Thuê</li>
+                    <li class="breadcrumb-item active">Sửa Sách Thuê</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+@using (Html.BeginForm("SuaSachThue","QuanLySachThue", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Sửa Sách Thuê</h3>
+                    </div>
+                    <div class="card-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.IDSach)
+
+                        <div class="form-group">
+                            @Html.Label("Mã Sách", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.MaSach, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MaSach, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Tên Sách", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TenSach, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TenSach, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Năm Xuất Bản", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.NamXB, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.NamXB, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Tái Bản", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TaiBan, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TaiBan, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Giá Thuê", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.GiaThue, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.GiaThue, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Meta Keyword", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Metakeyword, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Metakeyword, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Meta Description", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.MetaDescription, new { htmlAttributes = new { @class = "form-control"} })
+                                @Html.ValidationMessageFor(model => model.MetaDescription, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Hình Ảnh", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input title="Upload" id="Image" type="file" name="Image" required />
+                                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Trạng Thái", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <select name="TrangThai" style="outline:none" class="form-control">
+                                    <option value="none">None</option>
+                                    <option value="hot">Hot</option>
+                                    <option value="new">New</option>
+                                    <option value="recomment">Recomment</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Chọn Thể Loại", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <select name="LoaiSachIDLoaiSach" style="outline:none" class="form-control">
+                                    @foreach (var item in TempData["AllLoaiSach"] as List<AllLoaiSachResult>)
+                                    {
+                                        <option value="@item.IDLoaiSach">
+                                            @item.TenLoaiSach
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Chọn Nhà Xuất Bản", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <select name="NhaXuatBanIDNXB" style="outline:none" class="form-control">
+                                    @foreach (var item in TempData["AllNXB"] as List<AllNXBResult>)
+                                    {
+                                        <option value="@item.IDNXB">
+                                            @item.TenNXB
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Chọn Ngôn Ngữ", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <select name="NgonNguIDNgonNgu" style="outline:none" class="form-control">
+                                    @foreach (var item in TempData["AllNgonNgu"] as List<AllNgonNguResult>)
+                                    {
+                                        <option value="@item.IDNgonNgu">
+                                            @item.NgonNgu
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Tác Giả", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <select name="TacGiaIDTacGia" style="outline:none" class="form-control">
+                                    @foreach (var item in TempData["AllTacGia"] as List<AllTacGiaResult>)
+                                    {
+                                        <option value="@item.IDTacGia">
+                                            @item.TenTacGia
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Save" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+}
+
+<div>
+    @Html.ActionLink("Quay về", "QuanLySachThue")
+</div>

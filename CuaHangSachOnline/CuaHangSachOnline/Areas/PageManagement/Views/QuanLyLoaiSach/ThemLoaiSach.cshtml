@@ -1,0 +1,82 @@
+﻿@model CuaHangSachOnline.Models.LoaiSach
+
+@{
+    ViewBag.Title = "ThemLoaiSach";
+    Layout = "~/Areas/PageManagement/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Quản Lý Loại Sách</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="Index">Home</a></li>
+                    <li class="breadcrumb-item active">Trang Quản Lý</li>
+                    <li class="breadcrumb-item active">Quản Lý Loại Sách</li>
+                    <li class="breadcrumb-item active">Thêm Loại Sách</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Thêm Sách Bán</h3>
+                </div>
+                <div class="card-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("Tên Loại Sách", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TenLoaiSach, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TenLoaiSach, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Trạng Thái", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <select name="TrangThai" style="outline:none" class="form-control">
+                                <option value="none">None</option>
+                                <option value="hot">Hot</option>
+                                <option value="new">New</option>
+                                <option value="recomment">Recomment</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Hình Ảnh", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input title="Upload" id="Imagels" type="file" name="Imagels" required class="form-control " />
+                            @Html.ValidationMessageFor(model => model.Imagels, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                }
+
+                <div>
+                    @Html.ActionLink("Quay về", "QuanLyLoaiSach")
+                </div>

@@ -1,0 +1,142 @@
+﻿@model IEnumerable<CuaHangSachOnline.Models.Sach>
+
+@{
+    ViewBag.Title = "About";
+}
+
+<h2>About</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaSach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenSach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoaiSach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NamXB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaiBan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GiaThue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GiaBan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Metakeyword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MetaDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.File_PDF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MucLuc_PDF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoaiSachIDLoaiSach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NhaXuatBanIDNXB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgonNguIDNgonNgu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ViTriIDViTri)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TacGiaIDTacGia)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaSach)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenSach)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoaiSach)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NamXB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaiBan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiaThue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiaBan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Metakeyword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MetaDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.File_PDF)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MucLuc_PDF)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.active)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.LoaiSachIDLoaiSach)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NhaXuatBanIDNXB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgonNguIDNgonNgu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ViTriIDViTri)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrangThai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TacGiaIDTacGia)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDSach }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDSach }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDSach })
+        </td>
+    </tr>
+}
+
+</table>
